@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #0a192f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #00ffa3;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #00cc82;
 }
 
 body {
@@ -28,11 +28,61 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Animated Background Orbs */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  animation: float 10s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  pointer-events: none;
+}
+
+body::before {
+  background: #00ffa3;
+  top: 10%;
+  left: 10%;
+  opacity: 0.4;
+  animation-duration: 15s;
+}
+
+body::after {
+  background: #1a2a6c;
+  bottom: 10%;
+  right: 10%;
+  opacity: 0.6;
+  animation-duration: 20s;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #00ffa3;
 }
 
 button {
@@ -47,7 +97,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #00ffa3;
 }
 button:focus,
 button:focus-visible {
@@ -65,4 +115,44 @@ button:focus-visible {
   button {
     /* background-color: #f9f9f9; */
   }
+}
+
+/* Footer Styles */
+.footer-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(10, 25, 47, 0.95);
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(0, 255, 163, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  direction: rtl;
+}
+
+.footer-bottom p::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #00ffa3);
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.footer-bottom p::after {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to left, transparent, #00ffa3);
+  margin: 0 10px;
+  vertical-align: middle;
 }
